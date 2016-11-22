@@ -2,12 +2,16 @@
 # Report functions
 
 
+# gets how many lines the file has
 def count_games(file_name):
     gameCount = 0
     with open(file_name, "r") as file:
         for lines in file:
             gameCount += 1
     return gameCount
+
+# returns true or false based on if there were any
+# game releases in the given year
 
 
 def decide(file_name, year):
@@ -16,10 +20,14 @@ def decide(file_name, year):
         for lines in file:
             salesList.append(lines.strip("\n").split("\t"))
 
+    # check if we have any entry matching parameter "year"
+    # the third element of the sublist will be always the release year
     for i in range(len(salesList)):
         if int(salesList[i][2]) == year:
             return True
     return False
+
+# get the title of the latest game release
 
 
 def get_latest(file_name):
@@ -40,6 +48,8 @@ def get_latest(file_name):
     else:
         return str(salesList[maxi][0])
 
+# returns the count of the genre given in parameters
+
 
 def count_by_genre(file_name, genre):
     salesList = []
@@ -49,6 +59,7 @@ def count_by_genre(file_name, genre):
 
     genreCount = 0
 
+    # the fourth element of the sublist is always the genre
     for i in range(len(salesList)):
         if salesList[i][3] == genre:
             genreCount += 1
@@ -56,6 +67,8 @@ def count_by_genre(file_name, genre):
     return genreCount
 
 
+# gets the first line number where the given title matches with the stat list
+# if no match found raises a ValueError
 def get_line_number_by_title(file_name, title):
     salesList = []
     with open(file_name, "r") as file:
@@ -71,9 +84,3 @@ def get_line_number_by_title(file_name, title):
         raise ValueError
 
     return serialNumber
-
-print(count_games("game_stat.txt"))
-print(decide("game_stat.txt", 2002))
-print(get_latest("game_stat.txt"))
-print(count_by_genre("game_stat.txt", "RPG"))
-print(get_line_number_by_title("game_stat.txt", "Minecraft"))
