@@ -113,7 +113,7 @@ def get_genres(file_name):
 # finds the top selling fps, return its release
 
 
-def when_was_top_fps(file_name):
+def when_was_top_sold_fps(file_name):
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -145,7 +145,7 @@ def sort_abc(file_name):
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
-            salesList.append(lines.strip("\n").split("\t"))
+            salesList.append(lines.strip("\n").split("\t")[0])
 
-    sorted_list = sorted(salesList, key=lambda title: title[0])
-    return sorted_list
+    salesList.sort()
+    return salesList
