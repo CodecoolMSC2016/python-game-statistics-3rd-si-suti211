@@ -100,15 +100,13 @@ def get_genres(file_name):
     for i in range(len(salesList)):
         genreList.append(salesList[i][3])
 
-    # converting genreList to set, then back to list,
     # this eliminates duplicate elements
-    genreList = set(genreList)
-    genreList = list(genreList)
+    genreListFiltered = [ii for n, ii in enumerate(
+        genreList) if ii not in genreList[:n]]
 
     # sorting alphabetically
-    genreList.sort()
-
-    return genreList
+    genreListFiltered = sorted(genreListFiltered, key=lambda x: x.lower())
+    return genreListFiltered
 
 # finds the top selling fps, return its release
 
