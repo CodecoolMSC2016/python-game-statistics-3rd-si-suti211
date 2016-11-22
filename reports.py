@@ -1,8 +1,9 @@
 
 # Report functions
 
-
 # gets how many lines the file has
+
+
 def count_games(file_name):
     gameCount = 0
     with open(file_name, "r") as file:
@@ -84,3 +85,53 @@ def get_line_number_by_title(file_name, title):
         raise ValueError
 
     return serialNumber
+
+# get all game gentres to a list
+
+
+def get_genres(file_name):
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+    genreList = []
+
+    # getting all genres into an empty list
+    for i in range(len(salesList)):
+        genreList.append(salesList[i][3])
+
+    # converting genreList to set, then back to list,
+    # this eliminates duplicate elements
+    genreList = set(genreList)
+    genreList = list(genreList)
+    return genreList
+
+# finds the top selling fps, return its release
+
+
+def when_was_top_fps(file_name):
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    fpsList = []
+
+    # getting all the fps games into a separate list
+    for i in range(len(salesList)):
+        if salesList[i][3] == "First-person shooter":
+            helperList = [salesList[i][0], salesList[i][1], salesList[i][2]]
+            fpsList.append(helperList)
+
+    # if we ave any fps game find the one with the greatest sales
+    # and returning its release
+    maxi = 0
+    if len(fpsList) == 0:
+        raise ValueError
+    else:
+        for i in range(len(fpsList)):
+            if float(fpsList[i][1]) > float(fpsList[maxi][1]):
+                maxi = i
+        return int(fpsList[maxi][2])
+
+print(when_was_top_fps("game_stat.txt"))
