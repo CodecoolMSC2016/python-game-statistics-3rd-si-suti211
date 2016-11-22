@@ -138,6 +138,8 @@ def when_was_top_fps(file_name):
                 maxi = i
         return int(fpsList[maxi][2])
 
+# sorting file conents
+
 
 def sort_abc(file_name):
     salesList = []
@@ -146,10 +148,4 @@ def sort_abc(file_name):
             salesList.append(lines.strip("\n").split("\t"))
 
     sorted_list = sorted(salesList, key=lambda title: title[0])
-    for i in sorted_list:
-        print(i)
     return sorted_list
-
-print(when_was_top_fps("game_stat.txt"))
-print(get_genres("game_stat.txt"))
-sort_abc("game_stat.txt")
