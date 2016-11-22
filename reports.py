@@ -104,6 +104,10 @@ def get_genres(file_name):
     # this eliminates duplicate elements
     genreList = set(genreList)
     genreList = list(genreList)
+
+    # sorting alphabetically
+    genreList.sort()
+
     return genreList
 
 # finds the top selling fps, return its release
@@ -134,4 +138,18 @@ def when_was_top_fps(file_name):
                 maxi = i
         return int(fpsList[maxi][2])
 
+
+def sort_abc(file_name):
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    sorted_list = sorted(salesList, key=lambda title: title[0])
+    for i in sorted_list:
+        print(i)
+    return sorted_list
+
 print(when_was_top_fps("game_stat.txt"))
+print(get_genres("game_stat.txt"))
+sort_abc("game_stat.txt")
