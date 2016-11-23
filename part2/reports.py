@@ -67,10 +67,13 @@ def get_selling_avg(file_name="game_stat.txt"):
     # getting the sum of game sales
     sumOfSales = 0.0
 
+    checkedList = []
     for game in range(len(salesList)):
-        sumOfSales += float(salesList[game][1])
+        if salesList[game][0] not in checkedList:
+            sumOfSales += float(salesList[game][1])
+            checkedList.append(salesList[game][0])
 
-    return sumOfSales / len(salesList)
+    return sumOfSales / len(checkedList)
 
 
 # getting the longest title, and returning its length
