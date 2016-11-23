@@ -119,7 +119,7 @@ def get_date_avg(file_name="game_stat.txt"):
 # gets all data of a selected game
 
 
-def get_game(title, file_name="game_stat.txt"):
+def get_game(file_name, title):
     # getting file contents into a list
     salesList = []
     with open(file_name, "r") as file:
@@ -130,8 +130,11 @@ def get_game(title, file_name="game_stat.txt"):
     gameProperties = []
     for game in range(len(salesList)):
         if salesList[game][0] == title:
-            for properties in salesList[game]:
-                gameProperties.append(properties)
+            gameProperties.append(salesList[game][0])
+            gameProperties.append(float(salesList[game][1]))
+            gameProperties.append(int(salesList[game][2]))
+            gameProperties.append(salesList[game][3])
+            gameProperties.append(salesList[game][4])
             return gameProperties
     raise ValueError
 
