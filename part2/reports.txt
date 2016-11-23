@@ -1,1 +1,46 @@
-What is the title of the most played game?:
+The top played game is Minecraft.
+Total game copies sold: 187.160 million.
+The average selling was 7.798 million.
+The longest game title is 52 characters long.
+The average of the release dates is 2003
+Properties of Diablo II:
+	Diablo II
+	4.0
+	2000
+	RPG
+	Blizzard Entertainment
+
+Total games by genre:
+	Simulation : 3
+	Action-adventure : 1
+	Survival game : 1
+	Real-time strategy : 7
+	RPG : 5
+	Sandbox : 1
+	First-person shooter : 6
+
+Available games sorted by release date: 
+	Diablo III
+	Terraria
+	StarCraft II: Wings of Liberty
+	The Sims 3
+	Minecraft
+	Crysis
+	Garry's Mod
+	Guild Wars
+	World of Warcraft
+	Warhammer 40,000: Dawn of War (including expansions)
+	The Sims 2
+	Half-Life 2
+	Doom 3
+	Counter-Strike: Condition Zero
+	Warcraft III: Reign of Chaos
+	The Sims
+	Diablo II
+	EverQuest
+	Counter-Strike
+	StarCraft
+	Half-Life
+	Age of Empires
+	Command & Conquer
+	Populous
