@@ -159,3 +159,20 @@ def count_grouped_by_genre(file_name="game_stat.txt"):
                 {salesList[game][3]: genres.get(salesList[game][3]) + 1})
 
     return genres
+
+
+def get_date_ordered(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    salesList = sorted(salesList, key=lambda x: x[2], reverse=True)
+
+    titlesOnlyList = []
+
+    for i in range(len(salesList)):
+        titlesOnlyList.append(salesList[i][0])
+
+    return titlesOnlyList

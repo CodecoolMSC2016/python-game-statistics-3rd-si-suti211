@@ -10,6 +10,7 @@ def main():
     print(reports.get_date_avg())
     print(reports.get_game("Half-Life 2"))
     print(reports.count_grouped_by_genre())
+    print(reports.get_date_ordered())
 
 if __name__ == "__main__":
     main()
