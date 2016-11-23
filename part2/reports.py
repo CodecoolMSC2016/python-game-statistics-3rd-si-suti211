@@ -115,3 +115,47 @@ def get_date_avg(file_name="game_stat.txt"):
     # adding 0.5 to the avg then converting it to int
     # to mimic a rounding method
     return int(sumOfReleases / len(salesList) + 0.5)
+
+# gets all data of a selected game
+
+
+def get_game(title, file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    # finding the first game that matches string given in title
+    gameProperties = []
+    for game in range(len(salesList)):
+        if salesList[game][0] == title:
+            for properties in salesList[game]:
+                gameProperties.append(properties)
+            return gameProperties
+    raise ValueError
+
+# gets games / genre
+
+
+def count_grouped_by_genre(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    genres = {}
+
+    # if the current games genre is not in the genres dictionary
+    # we add it with a 0+1 default value
+    for game in range(len(salesList)):
+        if salesList[game][3] not in genres:
+            genres.update(
+                {salesList[game][3]: genres.get(salesList[game][3], 0) + 1})
+        # if its in, we just update the key with an incremented value
+        else:
+            genres.update(
+                {salesList[game][3]: genres.get(salesList[game][3]) + 1})
+
+    return genres
