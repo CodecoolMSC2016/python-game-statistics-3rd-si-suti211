@@ -1,8 +1,8 @@
 There are 24 games in the file.
-Is there any game released in 1997?: yes.
+Is there any game released in 2006?: yes.
 Latest game release was: Diablo III.
-There are 5 RPG games out there.
-The serial number of Half-Life 2 is: 5.
+There are 7 Real-time strategy games out there.
+The serial number of World of Warcraft is: 2.
 Available game genres:
 	 Action-adventure
 	 First-person shooter
