@@ -89,3 +89,23 @@ def count_longest_title(file_name="game_stat.txt"):
         if len(salesList[game][0]) > len(salesList[maxi][0]):
             maxi = game
     return len(salesList[maxi][0])
+
+# gets the avg of the release years
+
+
+def get_date_avg(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    # getting the sum of game releases
+    sumOfReleases = 0.0
+
+    for game in range(len(salesList)):
+        sumOfReleases += float(salesList[game][2])
+
+    # adding 0.5 to the avg then converting it to int
+    # to mimic a rounding method
+    return int(sumOfReleases / len(salesList) + 0.5)
