@@ -11,11 +11,23 @@ def get_most_played(file_name="game_stat.txt"):
     # finding most sold game Index
     maxi = 0
     for i in range(len(salesList)):
-        if float(salesList[i][1]) > float(salesList[maxi][i]):
+        if float(salesList[i][1]) > float(salesList[maxi][1]):
             maxi = i
 
-    # if there is more games with the same sale values,
-    # we return the one with the lower index
-    if salesList.count(salesList[maxi][1] > 1):
-        return salesList[salesList.index(salesList[maxi][1])][0]
-    return salesList[maxi][0]
+    # we scan the sales, and determine how many games have the same
+    # sale value
+
+    gamesWithSameSales = 0
+    for i in range(len(salesList)):
+        if float(salesList[i][1]) == float(salesList[maxi][1]):
+            gamesWithSameSales += 1
+
+    # if we have more than 1 game with the same sale values as the
+    # most popular we find the one with the lower index and return it
+
+    if gamesWithSameSales > 1:
+        for i in range(len(salesList)):
+            if salesList[i][1] == salesList[maxi][1]:
+                return salesList[i][0]
+    else:
+        return salesList[maxi][0]

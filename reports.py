@@ -42,12 +42,20 @@ def get_latest(file_name):
     for i in range(len(salesList)):
         if int(salesList[i][2]) > int(salesList[maxi][2]):
             maxi = i
-    # if we have more than 1 game with the same release year,
-    # we return the first element(name)of the element with the lowest index
-    if salesList.count(salesList[maxi][2]) > 1:
-        return str(salesList[salesList.index(salesList[maxi][2])][0])
+
+    gamesWithSameRelease = 0
+    for i in range(len(salesList)):
+        if float(salesList[i][2]) == float(salesList[maxi][2]):
+            gamesWithSameRelease += 1
+
+    # if we have more than 1 game with the same release date
+
+    if gamesWithSameRelease > 1:
+        for i in range(len(salesList)):
+            if salesList[i][2] == salesList[maxi][2]:
+                return salesList[i][0]
     else:
-        return str(salesList[maxi][0])
+        return salesList[maxi][0]
 
 # returns the count of the genre given in parameters
 
