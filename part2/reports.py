@@ -67,6 +67,9 @@ def get_selling_avg(file_name="game_stat.txt"):
     # getting the sum of game sales
     sumOfSales = 0.0
 
+    # we only add the sales of the current game to the sum,
+    # if its not in the checked list, to avoid counting issues
+    # caused by multiple occurance of the same game
     checkedList = []
     for game in range(len(salesList)):
         if salesList[game][0] not in checkedList:
