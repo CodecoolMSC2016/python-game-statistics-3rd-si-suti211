@@ -8,7 +8,7 @@ def print_list(list, file):
 
 
 def main():
-    EXPORT_FILE = "exports.txt"
+    EXPORT_FILE = "reports.txt"
     FILE_NAME = "game_stat.txt"
 
     release_in_year = int(input("Please enter a year to check: "))
