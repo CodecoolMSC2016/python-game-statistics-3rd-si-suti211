@@ -1,8 +1,10 @@
 
 # Report functions
+# returns the name of the most sold(played) game
 
 
 def get_most_played(file_name="game_stat.txt"):
+    # getting file contents into a list
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -31,3 +33,59 @@ def get_most_played(file_name="game_stat.txt"):
                 return salesList[i][0]
     else:
         return salesList[maxi][0]
+
+
+# returns the sum of game sales
+
+
+def sum_sold(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    # getting the sum of game sales
+    sumOfSales = 0.0
+
+    for game in range(len(salesList)):
+        sumOfSales += float(salesList[game][1])
+
+    return sumOfSales
+
+
+# gets the avg of sellings
+
+
+def get_selling_avg(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    # getting the sum of game sales
+    sumOfSales = 0.0
+
+    for game in range(len(salesList)):
+        sumOfSales += float(salesList[game][1])
+
+    return sumOfSales / len(salesList)
+
+
+# getting the longest title, and returning its length
+
+
+def count_longest_title(file_name="game_stat.txt"):
+    # getting file contents into a list
+    salesList = []
+    with open(file_name, "r") as file:
+        for lines in file:
+            salesList.append(lines.strip("\n").split("\t"))
+
+    # find the longest title
+    maxi = 0
+    for game in range(len(salesList)):
+        if len(salesList[game][0]) > len(salesList[maxi][0]):
+            maxi = game
+    return len(salesList[maxi][0])
