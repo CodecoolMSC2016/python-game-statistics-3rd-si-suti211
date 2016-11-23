@@ -172,7 +172,7 @@ def get_date_ordered(file_name="game_stat.txt"):
             salesList.append(lines.strip("\n").split("\t"))
 
     salesList = sorted(salesList, key=lambda x: (
-        x[2], x[0]), reverse=True)
+        int(x[2]), x[0]), reverse=True)
 
     titlesOnlyList = []
 
