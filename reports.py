@@ -1,6 +1,12 @@
-
-
 # Report functions
+# constants for indexing the 2D list in a more readable way
+TITLE_INDEX = 0
+SALES_INDEX = 1
+RELEASE_INDEX = 2
+GENRE_INDEX = 3
+PUBLISHER_INDEX = 4
+
+
 def count_games(file_name):
     """
     Gets how many lines a file has.
@@ -30,8 +36,8 @@ def decide(file_name, year):
 
     # check if we have any entry matching parameter "year"
     # the third element of the sublist will be always the release year
-    for i in range(len(salesList)):
-        if int(salesList[i][2]) == year:
+    for game in salesList:
+        if int(game[RELEASE_INDEX]) == year:
             return True
     return False
 
@@ -47,22 +53,22 @@ def get_latest(file_name):
 
     # finding maximum in release dates
     maxi = 0
-    for i in range(len(salesList)):
-        if int(salesList[i][2]) > int(salesList[maxi][2]):
-            maxi = i
+    for game in range(len(salesList)):
+        if int(salesList[game][RELEASE_INDEX]) > int(salesList[maxi][RELEASE_INDEX]):
+            maxi = game
 
     gamesWithSameRelease = 0
-    for i in range(len(salesList)):
-        if float(salesList[i][2]) == float(salesList[maxi][2]):
+    for game in range(len(salesList)):
+        if float(salesList[game][RELEASE_INDEX]) == float(salesList[maxi][RELEASE_INDEX]):
             gamesWithSameRelease += 1
 
     # if we have more than 1 game with the same release date
     if gamesWithSameRelease > 1:
-        for i in range(len(salesList)):
-            if salesList[i][2] == salesList[maxi][2]:
-                return salesList[i][0]
+        for game in range(len(salesList)):
+            if salesList[game][RELEASE_INDEX] == salesList[maxi][RELEASE_INDEX]:
+                return salesList[game][TITLE_INDEX]
     else:
-        return salesList[maxi][0]
+        return salesList[maxi][TITLE_INDEX]
 
 
 def count_by_genre(file_name, genre):
@@ -80,8 +86,8 @@ def count_by_genre(file_name, genre):
     genreCount = 0
 
     # the fourth element of the sublist is always the genre
-    for i in range(len(salesList)):
-        if salesList[i][3] == genre:
+    for game in range(len(salesList)):
+        if salesList[game][GENRE_INDEX] == genre:
             genreCount += 1
 
     return genreCount
@@ -101,9 +107,9 @@ def get_line_number_by_title(file_name, title):
             salesList.append(lines.strip("\n").split("\t"))
 
     serialNumber = 0
-    for i in range(len(salesList)):
-        if salesList[i][0] == title:
-            serialNumber = i + 1
+    for game in range(len(salesList)):
+        if salesList[game][TITLE_INDEX] == title:
+            serialNumber = game + 1
             break
     if serialNumber == 0:
         raise ValueError
@@ -124,8 +130,8 @@ def get_genres(file_name):
     genreList = []
 
     # getting all genres into an empty list
-    for i in range(len(salesList)):
-        genreList.append(salesList[i][3])
+    for game in range(len(salesList)):
+        genreList.append(salesList[game][GENRE_INDEX])
 
     # this eliminates duplicate elements
     genreListFiltered = [ii for n, ii in enumerate(
@@ -150,9 +156,10 @@ def when_was_top_sold_fps(file_name):
     fpsList = []
 
     # getting all the fps games into a separate list
-    for i in range(len(salesList)):
-        if salesList[i][3] == "First-person shooter":
-            helperList = [salesList[i][0], salesList[i][1], salesList[i][2]]
+    for game in range(len(salesList)):
+        if salesList[game][GENRE_INDEX] == "First-person shooter":
+            helperList = [salesList[game][TITLE_INDEX], salesList[
+                game][SALES_INDEX], salesList[game][RELEASE_INDEX]]
             fpsList.append(helperList)
 
     # if we ave any fps game find the one with the greatest sales
@@ -161,10 +168,10 @@ def when_was_top_sold_fps(file_name):
     if len(fpsList) == 0:
         raise ValueError
     else:
-        for i in range(len(fpsList)):
-            if float(fpsList[i][1]) > float(fpsList[maxi][1]):
-                maxi = i
-        return int(fpsList[maxi][2])
+        for game in range(len(fpsList)):
+            if float(fpsList[game][SALES_INDEX]) > float(fpsList[maxi][SALES_INDEX]):
+                maxi = game
+        return int(fpsList[maxi][RELEASE_INDEX])
 
 
 def sort_abc(file_name):
