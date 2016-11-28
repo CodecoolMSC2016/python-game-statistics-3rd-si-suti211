@@ -1,21 +1,28 @@
 
+
 # Report functions
-
-# gets how many lines the file has
-
-
 def count_games(file_name):
+    """
+    Gets how many lines a file has.
+    Arguments:
+    file_name - string, name of the file which we open
+    returns an int.
+    """
     gameCount = 0
     with open(file_name, "r") as file:
         for lines in file:
             gameCount += 1
     return gameCount
 
-# returns true or false based on if there were any
-# game releases in the given year
-
 
 def decide(file_name, year):
+    """Returns true if there was any game release in year given in parameters.
+    returns false otherwise.
+
+    Arguments:
+        file_name - existing file name (string)
+        year - checkable year(int)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -28,10 +35,11 @@ def decide(file_name, year):
             return True
     return False
 
-# get the title of the latest game release
-
 
 def get_latest(file_name):
+    """Gets the title of the game with the latest release
+    returns a string.
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -49,7 +57,6 @@ def get_latest(file_name):
             gamesWithSameRelease += 1
 
     # if we have more than 1 game with the same release date
-
     if gamesWithSameRelease > 1:
         for i in range(len(salesList)):
             if salesList[i][2] == salesList[maxi][2]:
@@ -57,10 +64,14 @@ def get_latest(file_name):
     else:
         return salesList[maxi][0]
 
-# returns the count of the genre given in parameters
-
 
 def count_by_genre(file_name, genre):
+    """Returns how much games a selected genre has.
+
+    Arguments:
+    file_name - file for reading (str)
+    genre - game genre (str)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -76,9 +87,14 @@ def count_by_genre(file_name, genre):
     return genreCount
 
 
-# gets the first line number where the given title matches with the stat list
-# if no match found raises a ValueError
 def get_line_number_by_title(file_name, title):
+    """Gets the first line number where the given title matches with the game_stat list
+    if no match found, raises a ValueError
+
+    Arguments:
+    file_name - file name for reading (str)
+    title - the game title we searching for (str)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -94,10 +110,13 @@ def get_line_number_by_title(file_name, title):
 
     return serialNumber
 
-# get all game gentres to a list
-
 
 def get_genres(file_name):
+    """Get all game genres, and returns it as a list (no duplicates).
+
+    Arguments:
+    file_name - the name of the file we read from (str)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -116,10 +135,13 @@ def get_genres(file_name):
     genreListFiltered = sorted(genreListFiltered, key=lambda x: x.lower())
     return genreListFiltered
 
-# finds the top selling fps, return its release
-
 
 def when_was_top_sold_fps(file_name):
+    """Finds the top selling fps, return its release year as (int)
+
+    Arguments:
+    file_name - the name of the file we read from (str)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
@@ -144,10 +166,13 @@ def when_was_top_sold_fps(file_name):
                 maxi = i
         return int(fpsList[maxi][2])
 
-# sorting file conents
-
 
 def sort_abc(file_name):
+    """Sorting file contents
+
+    Arguments:
+    file_name - the name of the file we read from (str)
+    """
     salesList = []
     with open(file_name, "r") as file:
         for lines in file:
